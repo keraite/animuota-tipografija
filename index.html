@@ -590,8 +590,6 @@
             });
             
             // Vingiuotos eilutės sutvarkymas
-            document.addEventListener('DOMContentLoaded', function() {
-    
             var animation = lottie.loadAnimation({
                 container: document.getElementById('lottie-animation-1'),
                 renderer: 'svg',
@@ -599,19 +597,6 @@
                 autoplay: true,
                 path: 'vingiuota.json'
             });
-    
-            // Lottie animacija su scroll
-            window.addEventListener('scroll', function() {
-                const scrollPercentage = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-        
-                // Animacijos greitis pagal elemento pozicija
-                const newSpeed = 0.5 + scrollPercentage;
-        
-                if (animation) {
-                    animation.setSpeed(newSpeed);
-                }
-            });
-        });
     });
     </script>
 </body>
