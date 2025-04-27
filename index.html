@@ -29,14 +29,14 @@
         }
 
         body {
-            font-family: 'Recursive';
+            font-family: 'Recursive', sans-serif;
             font-variation-settings: "wght" 400, "slnt" 0, "CASL" 0.5, "MONO" 0;
             line-height: 1.6;
             background-color: #ffffff;
             color: var(--black);
         }
         
-        /* grid layout*/
+        /* Grid Layout */
         .grid-container {
             display: grid;
             grid-template-columns: 6fr 1fr;
@@ -49,7 +49,7 @@
         .header-area {
             grid-column: 1 / 2;
             grid-row: 1 / 2;
-            padding: 20px 5px 5px 40px;
+            padding: 20px 5px 20px 40px;
             background-color: var(--yellow);
         }
 
@@ -90,7 +90,7 @@
             transform: translateY(30px);
         }
 
-        .typing-one{
+        .typing-one {
             padding: 30px;
             background-color: var(--yellow);
             box-shadow: var(--blue) 6px 6px;
@@ -144,7 +144,9 @@
             transform: translateY(30px);
         }
 
-        .bottom-one, .bottom-two, .bottom-three {
+        .bottom-one, 
+        .bottom-two, 
+        .bottom-three {
             padding: 30px;
             opacity: 0;
             transform: translateY(20px);
@@ -158,10 +160,10 @@
             overflow: hidden;
         }
         
-        /*typography*/
+        /* Typography */
         .main-title {
             font-size: 5rem;
-            font-family: "Tilt Warp";
+            font-family: "Tilt Warp", sans-serif;
             font-variation-settings: "XROT" 0, "YROT" 0;
             margin-bottom: 1.5rem;
             line-height: 1.1;
@@ -170,21 +172,17 @@
         }
 
         h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-variation-settings: "wght" 500;
-            margin-bottom: 1rem;
-            letter-spacing: 0.02em;
         }
 
         b {
-            font-family: 'Recursive';
+            font-family: 'Recursive', sans-serif;
             font-variation-settings: "wght" 700;
         }
 
         p {
             font-size: 1.1rem;
-            /* text-align: justify;
-            text-justify: inter-word; */
             margin-bottom: 20px;
             line-height: 1.6;
         }
@@ -196,34 +194,58 @@
             position: relative;
         }
 
-        .no-animation {
+        .weight, .mono, .casual, .slant{
+            font-size: 2rem;
+            margin: 1rem;
+            font-variation-settings: "wght" 700;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .weight {
+            font-variation-settings: "wght" 800;
+            text-shadow: var(--blue) 3px 3px 0px;
+        }
+        
+        .mono {
+            font-variation-settings: "MONO" 1;
+            text-shadow: var(--green) 3px 3px 0px;
+        }
+
+        .casual {
+            font-variation-settings: "CASL" 1, "CRSV" 1;
             text-shadow: var(--blue) 3px 3px 0px;
         }
 
-        .bottom-title-one, .bottom-title-two, .bottom-title-three {
+        .slant {
+            font-variation-settings: "slnt" -15;
+            text-shadow: var(--yellow) 3px 3px 0px;
+        }
+
+        .bottom-title-one, 
+        .bottom-title-two, 
+        .bottom-title-three {
             font-variation-settings: "wght" 700;
             font-size: 2.5rem;
             margin-bottom: 1rem;
             position: relative;
         }
         
-        .bottom-title-one{
+        .bottom-title-one {
             text-shadow: var(--green) 3px 3px 0px;
         }
 
-        .bottom-title-two{
+        .bottom-title-two {
             text-shadow: var(--blue) 3px 3px 0px;
         }
 
-        .bottom-title-three{
+        .bottom-title-three {
             text-shadow: var(--yellow) 3px 3px 0px;
         }
 
-        /* animations */
+        /* Animations */
         .lottie-container {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -250,7 +272,6 @@
             margin-bottom: 2rem;
             font-variation-settings: "wght" 600;
             overflow: hidden;
-            color: var(--black);
             background: linear-gradient(
                 to right,
                 var(--black) 50%,
@@ -263,43 +284,49 @@
             color: transparent;
         }
 
-        .typing-one :nth-child(1){
+        .typing-one :nth-child(1) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 0s;
         }
 
-        .typing-one :nth-child(3){
+        .typing-one :nth-child(3) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 2s;
         }
 
-        .typing-one :nth-child(5){
+        .typing-one :nth-child(5) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 4s;
         }
 
-        .typing-one :nth-child(7){
+        .typing-one :nth-child(7) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 6s;
         }
 
-        .typing-one :nth-child(9){
+        .typing-one :nth-child(9) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 8s;
         }
 
-        .typing-one :nth-child(11){
+        .typing-one :nth-child(11) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 10s;
         }
 
-        .typing-one :nth-child(13){
+        .typing-one :nth-child(13) {
             animation: wipeColor 16s infinite alternate ease-in-out;
             animation-delay: 12s;
         }
         
-        .no-animation, .slant-animation, .casual-animation, .mono-animation, .weight-animation {
-            font-size: 2.5rem;
+        .drop-blue, 
+        .drop-green, 
+        .drop-yellow, 
+        .slant-animation, 
+        .casual-animation, 
+        .mono-animation, 
+        .weight-animation {
+            font-size: 2rem;
             margin: 1rem;
             font-variation-settings: "wght" 600;
             overflow: hidden;
@@ -320,7 +347,7 @@
         .casual-animation {
             background-color: var(--blue);
             box-shadow: var(--yellow) 6px 6px 0px;
-            font-variation-settings: "CRSV" 0;
+            font-variation-settings: "CASL" 0;
             transition: font-variation-settings 0.5s ease-in-out;
         }
 
@@ -367,13 +394,12 @@
 </head>
 <body>
     <div class="grid-container">
-
         <div class="header-area">
             <h3>Beatričė Keraitė</h3>
         </div>
 
         <div class="title-area">
-            <h1 class="main-title">Svetainės dizainas taikaint </br> animuotạ tipografijạ</h1>
+            <h1 class="main-title">Svetainės dizainas taikaint <br> animuotạ tipografijạ</h1>
             <h3>Bakalauro baigiamasis darbas</h3>
         </div>
         
@@ -391,19 +417,19 @@
         <div class="typing-area">
             <div class="typing-one">
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
                 <span class="wipe-text">Teksto braukimas</span>
-                </br>
+                <br>
             </div>
             <div class="typing-two">
                 <div>
@@ -418,35 +444,41 @@
         </div>
         
         <div class="var-area-one">
-            <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.</p>
+            <p>
+                <b>Pasvirimo ir storio animacijos aprašymas.</b>
+                Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.
+            </p>
         </div>
         
         <div class="var-area-two">
             <div class="slant-animation">Pasivirimas</div>
-            <div class="no-animation">Storis</div>
+            <div class="weight">Storis</div>
             <div class="casual-animation">Neformalus</div>
-            <div class="no-animation">Lygiaplotis</div>
-            <div class="no-animation">Neformalus</div>
+            <div class="mono">Lygiaplotis</div>
+            <div class="casual">Neformalus</div>
             <div class="mono-animation">Lygiaplotis</div>
-            <div class="no-animation">Pasivirimas</div>
+            <div class="slant">Pasivirimas</div>
             <div class="weight-animation">Storis </div>
         </div>
 
         <div class="var-area-three">
-            <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.</p>
+            <p>
+                <b>Šrifto tipo animacijos aprašymas. </b>
+                Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.
+            </p>
         </div>
         
         <div class="bottom-area">
             <div class="bottom-one">
-                <h2 class="bottom-title-one">Kintamieji </br> šriftai</h2>
+                <h2 class="bottom-title-one">Kintamieji <br> šriftai</h2>
                 <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam. Malesuada elementum enim quis consequat faucibus facilisi ornat.</p>
             </div>
             <div class="bottom-two">
-                <h2 class="bottom-title-two">Teksto </br> interaktyvumas</h2>
+                <h2 class="bottom-title-two">Teksto <br> interaktyvumas</h2>
                 <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam. Malesuada elementum enim quis consequat faucibus facilisi ornat.</p>
             </div>
             <div class="bottom-three">
-                <h2 class="bottom-title-three">Animacijų </br> integracija</h2>
+                <h2 class="bottom-title-three">Animacijų <br> integracija</h2>
                 <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam. Malesuada elementum enim quis consequat faucibus facilisi ornat.</p>
             </div>
         </div>
@@ -459,7 +491,7 @@
     </div>
     
     <script>
-        //interaktyvaus teksto animacija
+        // Interaktyvaus teksto animacija
         const interactiveTexts = document.querySelectorAll('.main-title');
         const interactiveSections = document.querySelectorAll('.title-area');
         
@@ -468,15 +500,15 @@
                 const container = text.closest('.title-area');
                 const containerRect = container.getBoundingClientRect();
                 
-                //kursoriaus pozicija konteineryje
+                // Kursoriaus pozicija konteineryje
                 const relativeX = event.clientX - containerRect.left;
                 const relativeY = event.clientY - containerRect.top;
                 
-                // pozicija i procentus
+                // Pozicija į procentus
                 const percentX = Math.max(0, Math.min(1, relativeX / containerRect.width));
                 const percentY = Math.max(0, Math.min(1, relativeY / containerRect.height));
                 
-                // procentai i kintamojo srifto asis
+                // Procentai į kintamojo šrifto ašis
                 const xRotation = percentX * 45;
                 const yRotation = percentY * 45;
                 
@@ -489,10 +521,10 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Setup GSAP ScrollTrigger
+            //GSAP ScrollTrigger
             gsap.registerPlugin(ScrollTrigger);
             
-            // Animate sections on scroll
+            // Sekciju animacija su slinkimu
             gsap.utils.toArray(['.about-area', '.typing-area', '.var-area-one', '.var-area-two', '.var-area-three', '.bottom-area']).forEach(element => {
                 gsap.fromTo(element, 
                     { 
@@ -513,7 +545,29 @@
                 );
             });
             
-            // Separately animate bottom area elements with cascade effect
+            // Triju kolonu horizontali animacija
+            gsap.utils.toArray(['.typing-one', '.typing-two']).forEach((element, index) => {
+                gsap.fromTo(element, 
+                    { 
+                        opacity: 0, 
+                        y: 30 
+                    },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.8, 
+                        delay: 0.15 * index,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: '.typing-area',
+                            start: "top 70%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+
+            // Triju kolonu horizontali animacija
             gsap.utils.toArray(['.bottom-one', '.bottom-two', '.bottom-three']).forEach((element, index) => {
                 gsap.fromTo(element, 
                     { 
@@ -535,14 +589,18 @@
                 );
             });
             
-            //Vingiuotos eilutes sutvarkymas
-            var animation = lottie.loadAnimation({
-                container: document.getElementById('lottie-animation-1'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: 'vingiuota.json'
-            });
+            // Vingiuotos eilutės sutvarkymas
+            try {
+                var animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie-animation-1'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'vingiuota.json'
+                });
+            } catch (error) {
+                console.error("Could not load Lottie animation:", error);
+            }
         });
     </script>
 </body>
