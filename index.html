@@ -4,438 +4,467 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animuota tipografija</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&family=Tilt+Prism&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-
-    <style>
-        /* Your existing styles */
-        @import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CRSV,MONO@-15..0,300..1000,0,0..1&family=Tilt+Prism:XROT,YROT@-45..45,-45..45&display=swap');
-        
-        /* animations  */
-        @keyframes marquee {
-        0% { transform: translateX(100%); }
-        100% { transform: translateX(-100%); }
-        }
-        @keyframes typing {
-            0% { width: 0; }
-            40% { width: 100%; }
-            60% { width: 100%; }
-            100% { width: 0; }
-        }
-        
-        @keyframes blink-cursor {
-            from, to { border-right-color: transparent }
-            50% { border-right-color: #F3F6F4; }
-        }
-
-        @keyframes weightChange {
-            0% { font-variation-settings: "wght" 300; }
-            50% { font-variation-settings: "wght" 900; }
-            100% { font-variation-settings: "wght" 300; }
-        }
-
-        @keyframes slantChange {
-            0% { font-variation-settings: "slnt" 0; }
-            50% { font-variation-settings: "slnt" -15; }
-            100% { font-variation-settings: "slnt" 0; }
-        }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
-        /* styling */
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0,0..1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp:XROT,YROT@-45..45,-45..45&display=swap');
+
+        :root {
+            --yellow: #F9F4AF;
+            --green: #E3F29A;
+            --blue: #C4E5FF;
+            --black: #131313;
+            --section-spacing: 100px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Recursive';
-            font-variation-settings: "wght" 400;
-            line-height: 1.5;
-            background-color: #F3F6F4;
+            font-variation-settings: "wght" 400, "slnt" 0, "CASL" 0.5, "MONO" 0;
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: var(--black);
+        }
+        
+        /* grid layout*/
+        .grid-container {
+            display: grid;
+            grid-template-columns: 6fr 1fr;
+            grid-template-rows: auto;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header-area {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            padding: 20px 5px 5px 40px;
+            background-color: var(--yellow);
         }
 
-        section {
-            margin-bottom: 70px;
+        .title-area {
+            grid-column: 1 / 2;
+            grid-row: 2 / 4;
+            padding: 180px 0px 10px 40px;
+            margin-bottom: var(--section-spacing);
+        }
+        
+        .wiggly-area {
+            grid-column: 2 / 3;
+            grid-row: 1 / 11;
+            background-color: var(--green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-area {
+            grid-column: 1 / 2;
+            grid-row: 4 / 5;
+            padding: 40px;
+            margin-bottom: var(--section-spacing);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .typing-area {
+            grid-column: 1 / 2;
+            grid-row: 5 / 6;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 50px 40px;
+            overflow: hidden;
+            margin-bottom: var(--section-spacing);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        h1 {
-            font-family: 'Recursive';
-            font-variation-settings: "wght" 800;
-            text-align: center;
-            margin-top: 130px;
-            margin-bottom: 20px;
+        .typing-one{
+            padding: 30px;
+            background-color: var(--yellow);
+            box-shadow: var(--blue) 6px 6px;
+        }
+        
+        .typing-two {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .var-area-one {
+            grid-column: 1 / 2;
+            grid-row: 6 / 7;
+            padding: 40px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .var-area-two {
+            grid-column: 1 / 2;
+            grid-row: 7 / 8;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            padding: 40px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .var-area-three {
+            grid-column: 1 / 2;
+            grid-row: 8 / 9;
+            padding: 40px;
+            margin-bottom: var(--section-spacing);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .bottom-area {
+            grid-column: 1 / 2;
+            grid-row: 9 / 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .bottom-one, .bottom-two, .bottom-three {
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-area {
+            grid-column: 1 / 2;
+            grid-row: 10 / 11;
+            background-color: var(--blue);
+            padding: 20px 40px;
+            overflow: hidden;
+        }
+        
+        /*typography*/
+        .main-title {
+            font-size: 5rem;
+            font-family: "Tilt Warp";
+            font-variation-settings: "XROT" 0, "YROT" 0;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-shadow: var(--blue) 6px 6px 0px;
         }
 
         h3 {
-            padding-left: 30px;
-            font-variation-settings: "wght" 600;
-        }
-        
-        p {
-            text-align: justify;
-            text-justify: inter-word;
-            padding: 30px;
+            font-size: 1.4rem;
+            font-variation-settings: "wght" 500;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
         }
 
         b {
             font-family: 'Recursive';
-            font-variation-settings: "wght" 600;
+            font-variation-settings: "wght" 700;
         }
 
-        header{
-            background-color: #CBCBCB;
-            color: #F3F6F4;
+        p {
+            font-size: 1.1rem;
+            /* text-align: justify;
+            text-justify: inter-word; */
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-variation-settings: "wght" 700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .no-animation {
+            text-shadow: var(--blue) 3px 3px 0px;
+        }
+
+        .bottom-title-one, .bottom-title-two, .bottom-title-three {
+            font-variation-settings: "wght" 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .bottom-title-one{
+            text-shadow: var(--green) 3px 3px 0px;
+        }
+
+        .bottom-title-two{
+            text-shadow: var(--blue) 3px 3px 0px;
+        }
+
+        .bottom-title-three{
+            text-shadow: var(--yellow) 3px 3px 0px;
+        }
+
+        /* animations */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes wipeColor {
+            0% { background-position: right; }
+            100% { background-position: left; }
+        }
+
+        .wipe-text {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-variation-settings: "wght" 600;
+            overflow: hidden;
+            color: var(--black);
+            background: linear-gradient(
+                to right,
+                var(--black) 50%,
+                var(--green) 50%
+            );
+            background-size: 400% 100%;
+            background-position: right;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .typing-one :nth-child(1){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 0s;
+        }
+
+        .typing-one :nth-child(3){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 2s;
+        }
+
+        .typing-one :nth-child(5){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 4s;
+        }
+
+        .typing-one :nth-child(7){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 6s;
+        }
+
+        .typing-one :nth-child(9){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 8s;
+        }
+
+        .typing-one :nth-child(11){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 10s;
+        }
+
+        .typing-one :nth-child(13){
+            animation: wipeColor 16s infinite alternate ease-in-out;
+            animation-delay: 12s;
+        }
+        
+        .no-animation, .slant-animation, .casual-animation, .mono-animation, .weight-animation {
+            font-size: 2.5rem;
+            margin: 1rem;
+            font-variation-settings: "wght" 600;
+            overflow: hidden;
             padding: 10px;
         }
 
-        footer{
-            background-color: #CBCBCB;
-            color: #F3F6F4;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            margin-top: 60px;
+        .slant-animation {
+            font-variation-settings: "slnt" 0;
+            background-color: var(--green);
+            box-shadow: var(--blue) 6px 6px 0px;
+            transition: font-variation-settings 0.5s ease-in-out;
         }
 
-        .animation-block-1 {
-            background-color: #E6BB30;
-            color: #F3F6F4;
-            font-variation-settings: "slnt" -15, "wght" 600;
-            padding-top: 25px;
-            padding-bottom: 25px;
-            margin-bottom: 20px;
+        .slant-animation:hover {
+            font-variation-settings: "slnt" -15;
         }
 
-        .animation-block-2 {
-            background-color: #E66B30;
-            color: #F3F6F4;
-            font-variation-settings: "wght" 600;
-            padding-left: 40px;
-            display: flex;
-            align-items: center;
+        .casual-animation {
+            background-color: var(--blue);
+            box-shadow: var(--yellow) 6px 6px 0px;
+            font-variation-settings: "CRSV" 0;
+            transition: font-variation-settings 0.5s ease-in-out;
         }
 
-        .animation-block-3 {
-            background-color: #E64B30;
-            color: #F3F6F4;
-            font-variation-settings: "wght" 600;
-            padding:20px;
+        .casual-animation:hover {
+            font-variation-settings: "CASL" 1;
         }
 
-        .animation-block-4 {
-            background-color: #E58C31;
-            color: #F3F6F4;
-            padding-top: 30px;
-            padding-bottom: 30px;
+        .mono-animation {
+            background-color: var(--yellow);
+            box-shadow: var(--blue) 6px 6px 0px;
+            font-variation-settings: "MONO" 0;
+            transition: font-variation-settings 0.5s ease-in-out;
         }
 
-        .interactive-text {
-            font-family: "Tilt Prism", sans-serif;
-            font-variation-settings: "XROT" 0, "YROT" 0;
-            text-align: center;
-            transition: font-variation-settings 0.1s ease-out;
-            cursor:grab; 
+        .mono-animation:hover {
+            font-variation-settings: "MONO" 1;
         }
 
-        .margin {
-            margin-top: 150px;
+        .weight-animation {
+            background-color: var(--green);
+            box-shadow: var(--blue) 6px 6px 0px;
+            font-variation-settings: "wght" 400;
+            transition: font-variation-settings 0.5s ease-in-out;
         }
 
-        .pad {
-            padding-left: 30px;
+        .weight-animation:hover {
+            font-variation-settings: "wght" 900;
         }
 
-        /* begancios eilutes sutvarkymas */
-        .marquee-container {
+        .running-animation {
+            font-size: 1.5rem;
+            font-variation-settings: "wght" 500;
             overflow: hidden;
-        }
-
-        .marquee-content {
             white-space: nowrap;
+            text-transform: uppercase;
             animation: marquee 15s linear infinite;
         }
 
-        .marquee-container:hover .marquee-content {
-          animation-play-state: paused;
-        }
-
-        /* teksto rinkimo animacijos tvarkymas */
-        .typing-animation {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            width: 0;
-            animation: 
-                typing 4s steps(16, end) infinite,
-                blink-cursor 0.75s step-end infinite;
-            border-right: 3px solid #F3F6F4;
-        }
-
-        /* kintamuju sriftu animaciju tvarkymas */
-        .weight-animation {
-            animation: weightChange 2s infinite ease-in-out;
-        }
-
-        .slant-animation {
-            animation: slantChange 2s infinite ease-in-out;
-        }
-
-        /* Lottie animaciju blokai */
-        .lottie-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .footer-area:hover .running-animation {
+            animation-play-state: paused;
         }
 
     </style>
 </head>
-
 <body>
-    <!-- header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h4 class="text-center">Animuota tipografija</h4>
-                </div>
-            </div>
+    <div class="grid-container">
+
+        <div class="header-area">
+            <h3>Beatričė Keraitė</h3>
         </div>
-    </header>
 
-    <!-- pavadinimas -->
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Svetainės dizainas taikaint animuotą tipografiją</h1>
-                </div>
-            </div>
+        <div class="title-area">
+            <h1 class="main-title">Svetainės dizainas taikaint </br> animuotạ tipografijạ</h1>
+            <h3>Bakalauro baigiamasis darbas</h3>
         </div>
-    </section>
-
-    <!-- projekto paaiskinimas -->
-    <section>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div>
-                        <p>
-                            <b>Bendras projekto aprašymas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. Maecenas elementum enim quis consequat facilisis.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- beganti eilute animacija-->
-    <section class = "animation-block-1" >
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 marquee-container">
-                    <div class="marquee-content">
-                        <h2> * Marquee Line animation * &nbsp; &nbsp; * Marquee Line animation * &nbsp; &nbsp; * Marquee Line animation * &nbsp; &nbsp;</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- begancios eilutes paaiskinimas-->   
-    <section class="my-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Bėganti eilutė</h3>
-                    <p>
-                        <b>Bėgančios eilutės (CSS) paaiškinimas.</b>
-                        Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. Maecenas elementum enim quis consequat facilisis facilisi amet.
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <h3>Kitokia bėganti eilutė</h3>
-                    <p>
-                        <b>Path animacijos (AE) paaiškinimas.</b>
-                        Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. Maecenas elementum enim quis consequat facilisis facilisi amet.
-                    </p>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- beganti eilute 2var animacija-->
-    <section class = "animation-block-1" >
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 marquee-container">
-                        <div id="lottie-animation-1" class="lottie-container"></div>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-    <!-- teksto rinkimo animacija ir paaiskinimas-->
-    <section class="margin">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 animation-block-2">
-                    <div>
-                        <h2><span class="typing-animation">Typing animation</span></h2>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <h3>Teksto rinkimo animacija</h3>
-                        <p>
-                            <b>Teksto rinkimo animacijos (CSS) paaiškinimas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. Maecenas elementum enim quis consequat facilisis.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- teksto rasymo animacija ir paaiskinimas -->
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <h3>Teksto rašymo animacija</h3>
-                        <p>
-                            <b>Teksto rašymo animacijos (AE) paaiškinimas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. Maecenas elementum enim quis consequat facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 animation-block-2">
-                    <img src="https://keraite.github.io/animuota-tipografija/rasyta.gif" class="lottie-container">
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- kintamieji sriftai-->
-    <section class="margin mb-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div>
-                        <h3>Raidžių pasvirimas</h3>
-                        <p>
-                            <b>Kintamųjų šriftų aprašymas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <h3>Kintamieji šriftai</h3>
-                        <p>
-                            <b>Kintamųjų šriftų aprašymas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <h3>Raidžių storiai</h3>
-                        <p>
-                            <b>Kintamųjų šriftų aprašymas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- kintamuju sriftu animacijos-->
-    <section>
-        <div class="container animation-block-3">
-            <div class="row">
-                <div class="col-md-4 ">
-                    <div>
-                        <h2 class="pad slant-animation"> Slant animation </h2>
-                    </div>
-                </div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div>
-                        <h2 class="pad weight-animation"> Weight animation </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- interaktyvi kintamojo srifto animacija-->
-    <section class="mb-1">
-            <div class="container interactive-block">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 animation-block-4">
-                        <h2 class="interactive-text">Interactive Rotation animation</h2>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-1 animation-block-4 "> </div>
-                    <div class="col-md-6">
-                        <p>
-                            <b>Interaktyvaus teksto paaiškinimas.</b>
-                            Lorem ipsum dolor sit amet consectetur. Mi eros tortor ut maecenas elit eni vulputate. Egestas sapien pretium bibendum dui quis semper semper rhoncus dui vulputate. Consequat urna non vulputate. locus commodi vulputate nisi est amet. Morbi sapien adipiscing amet eu netus ut varius. Habitant felis egestas magna turpis eu in. Quam duis elementum in semper at rutrum nam. Maecenas elementum enim quis consequat facilisi.
-                        </p>
-                    </div>
-                    <div class="col-md-1 animation-block-4 "> </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-8 animation-block-4">
-                        <h2 class="interactive-text">Interactive Rotation animation</h2>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h4 class="text-center">
-                        Beatričė Keraitė <br>
-                        2025 m.
-                        Vilnius Tech
-                    </h4>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Original interactive text script
-        const interactiveTexts = document.querySelectorAll('.interactive-text');
-        const interactiveSections = document.querySelectorAll('.interactive-block');
         
-        // Function to handle mouse move
+        <div class="wiggly-area">
+            <div id="lottie-animation-1"></div>
+        </div>
+        
+        <div class="about-area">
+            <p> 
+                <b>Bendras projekto aprašymas.</b>
+                Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam malesuada. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus cons.
+            </p>
+        </div>
+        
+        <div class="typing-area">
+            <div class="typing-one">
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+                <span class="wipe-text">Teksto braukimas</span>
+                </br>
+            </div>
+            <div class="typing-two">
+                <div>
+                    <h2 class="section-title">Teksto surinkimo aprašymas.</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.</p>
+                </div>
+                <div>
+                    <h2 class="section-title">Bėgančios eilutės aprašymas.</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. E Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at lacus consequat volutpat.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="var-area-one">
+            <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.</p>
+        </div>
+        
+        <div class="var-area-two">
+            <div class="slant-animation">Pasivirimas</div>
+            <div class="no-animation">Storis</div>
+            <div class="casual-animation">Neformalus</div>
+            <div class="no-animation">Lygiaplotis</div>
+            <div class="no-animation">Neformalus</div>
+            <div class="mono-animation">Lygiaplotis</div>
+            <div class="no-animation">Pasivirimas</div>
+            <div class="weight-animation">Storis </div>
+        </div>
+
+        <div class="var-area-three">
+            <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at.</p>
+        </div>
+        
+        <div class="bottom-area">
+            <div class="bottom-one">
+                <h2 class="bottom-title-one">Kintamieji </br> šriftai</h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam. Malesuada elementum enim quis consequat faucibus facilisi ornat.</p>
+            </div>
+            <div class="bottom-two">
+                <h2 class="bottom-title-two">Teksto </br> interaktyvumas</h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam. Malesuada elementum enim quis consequat faucibus facilisi ornat.</p>
+            </div>
+            <div class="bottom-three">
+                <h2 class="bottom-title-three">Animacijų </br> integracija</h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Mi arcu tortor id maecenas est est vulputate. Egestas eleifend laoreet bibendum fringilla. In quis semper semper interdum dui vulputate. Consequat urna non scelerisque lacus consequat volutpat orci elit amet. Morbi sapien scelerisque amet mi ridiculus viverra. Habitant felis egestas neque turpis eu eu in sed tellus. Quam duis elementum in semper at rutrum nam. Malesuada elementum enim quis consequat faucibus facilisi ornat.</p>
+            </div>
+        </div>
+        
+        <div class="footer-area">
+            <div class="running-animation">
+                Beatričė Keraitė &nbsp;||&nbsp; Vilnius Tech &nbsp;||&nbsp; 2025 metai
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        //interaktyvaus teksto animacija
+        const interactiveTexts = document.querySelectorAll('.main-title');
+        const interactiveSections = document.querySelectorAll('.title-area');
+        
         function handleMouseMove(event) {
-            // Loop through all interactive texts
             interactiveTexts.forEach(text => {
-                // Get text's container dimensions and position
-                const container = text.closest('.interactive-block');
+                const container = text.closest('.title-area');
                 const containerRect = container.getBoundingClientRect();
                 
-                // Calculate mouse position relative to the container
+                //kursoriaus pozicija konteineryje
                 const relativeX = event.clientX - containerRect.left;
                 const relativeY = event.clientY - containerRect.top;
                 
-                // Calculate percentage position (0 to 1)
+                // pozicija i procentus
                 const percentX = Math.max(0, Math.min(1, relativeX / containerRect.width));
                 const percentY = Math.max(0, Math.min(1, relativeY / containerRect.height));
                 
-                // Map percentage to font variation settings (-45 to 45)
-                const xRotation = percentX * 90 - 45; // Map 0-1 to -45 to 45
-                const yRotation = percentY * 90 - 45; // Map 0-1 to -45 to 45
+                // procentai i kintamojo srifto asis
+                const xRotation = percentX * 45;
+                const yRotation = percentY * 45;
                 
-                // Apply font variation settings
                 text.style.fontVariationSettings = `"XROT" ${xRotation}, "YROT" ${yRotation}`;
             });
         }
@@ -445,15 +474,60 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Setup GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate sections on scroll
+            gsap.utils.toArray(['.about-area', '.typing-area', '.var-area-one', '.var-area-two', '.var-area-three', '.bottom-area']).forEach(element => {
+                gsap.fromTo(element, 
+                    { 
+                        opacity: 0, 
+                        y: 50 
+                    },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.8, 
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+            
+            // Separately animate bottom area elements with cascade effect
+            gsap.utils.toArray(['.bottom-one', '.bottom-two', '.bottom-three']).forEach((element, index) => {
+                gsap.fromTo(element, 
+                    { 
+                        opacity: 0, 
+                        y: 30 
+                    },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.6, 
+                        delay: 0.15 * index,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: '.bottom-area',
+                            start: "top 70%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+            
             //Vingiuotos eilutes sutvarkymas
-            var animation1 = lottie.loadAnimation({
-                container: document.getElementById('lottie-animation-1'),
+            var animation = lottie.loadAnimation({
+                container: document.querySelector('.wiggly-area'),
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
-                path: 'https://keraite.github.io/animuota-tipografija/beganti.json'
+                path: 'animacijos/vingiuota.json'
             });
-            
         });
     </script>
 </body>
